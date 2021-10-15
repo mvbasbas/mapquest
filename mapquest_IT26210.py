@@ -5,9 +5,11 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "b4eOrBzps7qO2qrKvbeN32RK8f0qtAns"
 
 while True:
+    #user is asked to input starting location
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
         break
+    #user is asked to input destination location
     dest = input("Destination: ")
     if dest == "quit" or dest == "q":
         break
@@ -15,6 +17,8 @@ while True:
     print("URL: " + (url))
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
+
+    #outputs information about the directions for the trip
     if json_status == 0:
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" +
@@ -34,7 +38,8 @@ while True:
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
             print("=============================================\n")
-
+    
+    #error handling
     elif json_status == 402:
             print("**********************************************")
             print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
