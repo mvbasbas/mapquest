@@ -1,8 +1,13 @@
 import urllib.parse
 import requests
+import webbrowser
 
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "b4eOrBzps7qO2qrKvbeN32RK8f0qtAns"
+
+#map_api = "https://www.mapquestapi.com/staticmap/v4/getmap?size=400,300&pois=default,37.819722,-122.478611|default,37.799,-122.4664&key=KEY"
+finmap1 = "http://mapq.st/map?q="
+finmap2 = "80202&maptype=map"
 
 while True:
     #user is asked to input starting location
@@ -24,11 +29,18 @@ while True:
             print((each["narrative"]) + " (" +
             str("{:.2f}".format((each["distance"])*1.61) + " km)"))
             print("=============================================\n")
+
+        openmap = input('Do you want to open the map?')
+        if openmap == "yes" or openmap == "y":
+            webbrowser.open(finmap1 + orig + ' ' + dest + finmap2)  # Go to example.com
         
         print("API Status: " + str(json_status) + " = A successful route call.\n")
         print("=============================================")
         print("Directions from " + (orig) + " to " + (dest))
         print("Trip Duration: " + (json_data["route"]["formattedTime"]))
+
+        print('Tunnel: ' + str(json_data["route"]["hasTunnel"]))
+        print('Highway: ' + str(json_data["route"]["hasHighway"]))
         
         print("Kilometers: " +
         str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
