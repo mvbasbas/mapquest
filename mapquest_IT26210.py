@@ -179,6 +179,9 @@ def outputData():
     else:
         messagebox.showerror("Error","For Status Code: " + str(json_status) + "\n Refer to: https://developer.mapquest.com/documentation/directions-api/status-codes")
 
+def openMap():
+    webbrowser.open(finmap1 + orig + ' ' + dest + finmap2)
+
         
 
 submitBtn = Button(middleframe3,
@@ -190,5 +193,24 @@ submitBtn = Button(middleframe3,
             command = outputData)
 submitBtn.pack(side = LEFT, padx = 5)
 
+clearBtn = Button(
+                  middleframe3,
+                  text = 'RESET',
+                  width = 20,
+                  activebackground = '#741519',
+                  activeforeground = 'white',
+                  font = 'Arial',
+                  command=clearData)
+clearBtn.pack(side = LEFT, padx = 5)
+
+openMapBtn = Button(
+                  middleframe3,
+                  text = 'MAP',
+                  width = 20,
+                  activebackground = '#741519',
+                  activeforeground = 'white',
+                  font = 'Arial',
+                  command=openMap)
+openMapBtn.pack(padx = 5)
 
 window.mainloop()
