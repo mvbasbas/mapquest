@@ -72,6 +72,23 @@ inputTextDest = Entry(middleframe2,
                   font = 'Arial 12')
 inputTextDest.pack(side = LEFT, ipady=5, pady=8)
 
+def clearData():
+    
+    inputTextDest.delete(0, 'end')
+    inputTextLoc.delete(0, 'end')
+    outputURL.destroy()
+    line1.destroy()
+
+    if json_status == 0:
+        outputDistance.destroy()
+        outputDistanceRoute.destroy()
+        outputRoute.destroy()
+        line2.destroy()
+        outputStatus.destroy()
+        outputTrip.destroy()
+        line3.destroy()
+        outputDuration.destroy()
+
 def outputData():
     global orig
     global dest
