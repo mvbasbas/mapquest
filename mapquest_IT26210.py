@@ -10,12 +10,15 @@ finmap1 = "http://mapq.st/map?q="
 finmap2 = "80202&maptype=map"
 key = "b4eOrBzps7qO2qrKvbeN32RK8f0qtAns"
 
+#added GUI
 window = Tk()
 
-
 window.title("Devnet Project")
+
+#added background color
 window.config(background = "#bb6c5d")
 
+#title
 intro = Label(
             window,
             text = "WELCOME TO MAPQUEST",
@@ -24,6 +27,7 @@ intro = Label(
             font ='Arial 40 bold')
 intro.pack(ipady = 25)
 
+#window resolution/size
 window.geometry('1950x1100')
 
 middleframe1 = Frame(
@@ -41,7 +45,7 @@ middleframe3 = Frame(
                     bg = "#bb6c5d")
 middleframe3.pack()
 
-
+#input textbox for starting location 
 inputLabelLoc= Label(middleframe1,
                   text = 'Starting Location: ',
                   bg = '#bb6c5d',
@@ -57,6 +61,7 @@ inputTextLoc = Entry(middleframe1,
                   font = 'Arial 12')
 inputTextLoc.pack(side = LEFT, ipady=5)
 
+#input textbox for destination location 
 inputLabelDest= Label(middleframe2,
                   text = 'Destination: ',
                   bg = '#bb6c5d',
@@ -200,7 +205,7 @@ def openMap():
     webbrowser.open(finmap1 + orig + ' ' + dest + finmap2)
 
         
-
+#submit button
 submitBtn = Button(middleframe3,
             text = "SUBMIT",
             width = 20,
@@ -210,6 +215,7 @@ submitBtn = Button(middleframe3,
             command = outputData)
 submitBtn.pack(side = LEFT, padx = 5)
 
+#reset button
 clearBtn = Button(
                   middleframe3,
                   text = 'RESET',
@@ -220,6 +226,7 @@ clearBtn = Button(
                   command=clearData)
 clearBtn.pack(side = LEFT, padx = 5)
 
+#map button
 openMapBtn = Button(
                   middleframe3,
                   text = 'MAP',
