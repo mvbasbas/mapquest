@@ -73,27 +73,29 @@ middleframe3 = Frame(
 middleframe3.pack()
 
 #input textbox for starting location 
-inputLabelLoc= Label(second_frame ,
+inputLabelLoc= Label(middleframe1,
                   text = 'Enter the Starting Location: ',
                   fg = '#d25525',
                   bg = "#fff5f3",
                   font = 'Raleway 20 bold',
-                padx= 20,
-                pady = 20)
+                  padx= 20,
+                  pady = 20)
 inputLabelLoc.pack(side = LEFT)
 
 textLoc = StringVar()
-inputTextLoc = Entry(second_frame ,
+inputTextLoc = Entry(middleframe1,
+                  highlightthickness=2,
                   textvariable = textLoc,
                   bd = 2,
                   bg = "#fff5f3",
-                  width = 30,
+                  width = 35,
                   font = 'Raleway 15',
                  )
-inputTextLoc.pack(side = LEFT, ipady=5)
+inputTextLoc.pack(side = LEFT, ipady=9)
+inputTextLoc.config(highlightbackground= '#d25525')
 
 #input textbox for destination location 
-inputLabelDest= Label(second_frame ,
+inputLabelDest= Label(middleframe2,
                   text = 'Enter Desired Destination: ',
                   fg = '#d25525',
                   bg = "#fff5f3",
@@ -103,13 +105,15 @@ inputLabelDest= Label(second_frame ,
 inputLabelDest.pack(side = LEFT, ipadx=7, pady=8)
 
 textDest = StringVar()
-inputTextDest = Entry(second_frame ,
+inputTextDest = Entry(middleframe2,
+                  highlightthickness=2,
                   textvariable = textDest,
                   bd = 2,
                   bg = "#fff5f3",
                   width = 35,
                   font = 'Raleway 15')
-inputTextDest.pack(side = LEFT, ipady=5, pady=8)
+inputTextDest.pack(side = LEFT, ipady=9, pady=9)
+inputTextDest.config(highlightbackground= '#d25525')
 
 def clearData():
     
@@ -136,9 +140,9 @@ def outputData():
     url = main_api + urllib.parse.urlencode({"key": key, "from":orig, "to":dest})
     
     global outputURL
-    outputURL = Label(second_frame ,
+    outputURL = Label(second_frame,
                 text= "\n URL: " + url,
-                bg = '#bb6c5d',
+                bg = '#fff5f3',
                 fg = '#d25525',
                 font = 'Raleway 12')
     outputURL.pack(pady = 5)  
@@ -148,8 +152,8 @@ def outputData():
     json_status = json_data["info"]["statuscode"]
 
     global line1
-    line1 = Canvas(second_frame , width=1700, height=3)
-    line1.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
+    line1 = Canvas(second_frame, width=1700, height=3)
+    line1.create_rectangle(0, 0, 1700, 3, fill="#d25525", outline = '#d25525')
     line1.pack()
 
     
@@ -161,45 +165,45 @@ def outputData():
         printdistance = str(listDist).replace("{","").replace("}", "").replace("'", "").replace("[", "").replace("]", "").replace(",", "\n")
 
         global outputDistanceRoute
-        outputDistanceRoute = Label(canvas,
+        outputDistanceRoute = Label(second_frame,
                     text = "Route Directions",
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 14 bold')
         outputDistanceRoute.pack(pady = 5) 
 
         global outputDistance
         outputDistance = Label(second_frame ,
                     text = printdistance,
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 12 italic')
         outputDistance.pack(pady = 5) 
 
 
         global line2
         line2 = Canvas(second_frame , width=1700, height=3)
-        line2.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
+        line2.create_rectangle(0, 0, 1700, 3, fill="#d25525", outline = '#d25525')
         line2.pack()
 
         global outputStatus
-        outputStatus = Label(second_frame ,
+        outputStatus = Label(second_frame,
                     text = "API Status: " + str(json_status) + " = A successful route call.",
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 12')
         outputStatus.pack(pady = 5) 
 
         global line3
-        line3 = Canvas(second_frame , width=1700, height=3)
+        line3 = Canvas(second_frame, width=1700, height=3)
         line3.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
         line3.pack()
 
         global outputTrip
         outputTrip = Label(second_frame ,
                     text = "Directions from " + (orig) + " to " + (dest),
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 12')
         outputTrip.pack(pady = 5) 
 
@@ -210,8 +214,8 @@ def outputData():
         global outputDuration
         outputDuration = Label(second_frame ,
                     text = Duration + "\n" + Kilometers + "\n" +Fuel,
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 12')
         outputDuration.pack(pady = 5) 
 
@@ -221,8 +225,8 @@ def outputData():
         global outputRoute
         outputRoute = Label(second_frame ,
                     text = Tunnel + "\n" + Highway,
-                    bg = '#bb6c5d',
-                    fg = 'white',
+                    bg = '#fff5f3',
+                    fg = '#d25525',
                     font = 'Raleway 12')
         outputRoute.pack(pady = 5) 
     
@@ -240,36 +244,45 @@ def openMap():
 
         
 #submit button
-submitBtn = Button(second_frame ,
-            text = "SUBMIT",
-            width = 20,
-            activebackground = '#62bb3c',
-            activeforeground = 'white',
-            font = 'Raleway',
-            command = outputData)
+submitBtn = Button(middleframe3,
+                highlightthickness=3,
+                text = "SUBMIT",
+                width = 20,
+                height = 2,
+                activebackground = '#62bb3c',
+                activeforeground = 'white',
+                font = 'Raleway 15 bold',
+                command = outputData)
 submitBtn.pack(side = LEFT, padx = 5)
-
+submitBtn.config(foreground='#62bb3c')
+submitBtn.config(highlightbackground= '#62bb3c')
 #reset button
-clearBtn = Button(
-                  second_frame ,
+clearBtn = Button(middleframe3,
+                  highlightthickness=3,
                   text = 'RESET',
                   width = 20,
+                  height = 2,
                   activebackground = '#a6a6a6',
                   activeforeground = 'white',
-                  font = 'Raleway',
-                  command=clearData)
+                  font = 'Raleway 15 bold',
+                  command = clearData)
 clearBtn.pack(side = LEFT, padx = 5)
+clearBtn.config(foreground='#a6a6a6')
+clearBtn.config(highlightbackground= '#a6a6a6')
 
 #map button
-openMapBtn = Button(
-                  second_frame ,
-                  text = ' MAP',
-                  width = 20,
-                  activebackground = '#e28317',
-                  activeforeground = 'white',
-                  font = 'Raleway',
-                  command=openMap)
+openMapBtn = Button(middleframe3 ,
+                    highlightthickness=3,
+                    text = 'MAP',
+                    width = 20,
+                    height = 2,
+                    activebackground = '#e28317',
+                    activeforeground = 'white',
+                    font = 'Raleway 15 bold',
+                    command = openMap)
 openMapBtn.pack(padx = 5)
+openMapBtn.config(foreground='#e28317')
+openMapBtn.config(highlightbackground= '#e28317')
 
 
 root.mainloop()
