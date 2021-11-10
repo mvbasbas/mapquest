@@ -12,36 +12,20 @@ finmap2 = "80202&maptype=map"
 key = "b4eOrBzps7qO2qrKvbeN32RK8f0qtAns"
 
 #added GUI
-
 canvas = Tk()
-
 canvas.title("Devnet Project")
 
 #added background color #bb6c5d
-canvas.config(background = "white")
+canvas.config(background = "#fff5f3")
 
 
 #inserting image
 path = "pic.png"
-
 mapquest_image = Image.open(path)
 mapquest_resizemage = mapquest_image.resize((1900,450)) #1100, 260
 mapquest_finimage = ImageTk.PhotoImage(mapquest_resizemage)
 mapquest_image_label = tkinter.Label(canvas, image = mapquest_finimage,)
 mapquest_image_label.pack(side = "top", fill = "x", expand = "no")
-# mapquest_image = ImageTk.PhotoImage(Image.open(path))
-# mapquest_image_label = tkinter.Label(canvas, image = mapquest_image, height = 200, width = 100)
-# mapquest_image_label.pack(side = "top", fill = "none", expand = "no")
-
-
-
-
-# img = ImageTk.PhotoImage(mapquest_resizemage)
-# label1 = tkinter.Label(canvas, image=img)
-# label1.image = img
-# label1.pack()
-
-
 
 #title
 # intro = Label(
@@ -58,48 +42,55 @@ canvas.geometry('1950x1100')
 
 middleframe1 = Frame(
                     canvas,
-                    bg = "#bb6c5d")
+                    bg = "#fff5f3",
+                    )
 middleframe1.pack()
 
 middleframe2 = Frame(
                     canvas,
-                    bg = "#bb6c5d")
+                     bg = "#fff5f3",)
 middleframe2.pack()
 
 middleframe3 = Frame(
                     canvas,
-                    bg = "#bb6c5d")
+                     bg = "#fff5f3",)
 middleframe3.pack()
 
 #input textbox for starting location 
 inputLabelLoc= Label(middleframe1,
-                  text = 'Starting Location: ',
-                  bg = '#bb6c5d',
-                  fg = 'white',
-                  font = 'Raleway 15 bold')
+                  text = 'Enter the Starting Location: ',
+                  fg = '#d25525',
+                  bg = "#fff5f3",
+                  font = 'Raleway 15 bold',
+                padx= 20,
+                pady = 20)
 inputLabelLoc.pack(side = LEFT)
 
 textLoc = StringVar()
 inputTextLoc = Entry(middleframe1,
                   textvariable = textLoc,
                   bd = 2,
-                  
+                  bg = "#fff5f3",
                   width = 30,
-                  font = 'Raleway 12')
+                  font = 'Raleway 12',
+                 )
 inputTextLoc.pack(side = LEFT, ipady=5)
 
 #input textbox for destination location 
 inputLabelDest= Label(middleframe2,
-                  text = 'Destination: ',
-                  bg = '#bb6c5d',
-                  fg = 'white',
-                  font = 'Raleway 15 bold')
+                  text = 'Enter Desired Destination: ',
+                  fg = '#d25525',
+                  bg = "#fff5f3",
+                  font = 'Raleway 15 bold',
+                  padx=20,
+                  pady=20)
 inputLabelDest.pack(side = LEFT, ipadx=7, pady=8)
 
 textDest = StringVar()
 inputTextDest = Entry(middleframe2,
                   textvariable = textDest,
                   bd = 2,
+                  bg = "#fff5f3",
                   width = 35,
                   font = 'Raleway 12')
 inputTextDest.pack(side = LEFT, ipady=5, pady=8)
@@ -132,7 +123,7 @@ def outputData():
     outputURL = Label(canvas,
                 text= "\n URL: " + url,
                 bg = '#bb6c5d',
-                fg = 'white',
+                fg = '#d25525',
                 font = 'Raleway 12')
     outputURL.pack(pady = 5)  
     
@@ -236,7 +227,7 @@ def openMap():
 submitBtn = Button(middleframe3,
             text = "SUBMIT",
             width = 20,
-            activebackground = '#741519',
+            activebackground = '#62bb3c',
             activeforeground = 'white',
             font = 'Raleway',
             command = outputData)
@@ -247,7 +238,7 @@ clearBtn = Button(
                   middleframe3,
                   text = 'RESET',
                   width = 20,
-                  activebackground = '#741519',
+                  activebackground = '#a6a6a6',
                   activeforeground = 'white',
                   font = 'Raleway',
                   command=clearData)
@@ -256,9 +247,9 @@ clearBtn.pack(side = LEFT, padx = 5)
 #map button
 openMapBtn = Button(
                   middleframe3,
-                  text = 'MAP',
+                  text = ' MAP',
                   width = 20,
-                  activebackground = '#741519',
+                  activebackground = '#e28317',
                   activeforeground = 'white',
                   font = 'Raleway',
                   command=openMap)
