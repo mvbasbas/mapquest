@@ -25,7 +25,7 @@ canvas.config(background = "white")
 path = "pic.png"
 
 mapquest_image = Image.open(path)
-mapquest_resizemage = mapquest_image.resize((1100,260))
+mapquest_resizemage = mapquest_image.resize((1900,450)) #1100, 260
 mapquest_finimage = ImageTk.PhotoImage(mapquest_resizemage)
 mapquest_image_label = tkinter.Label(canvas, image = mapquest_finimage,)
 mapquest_image_label.pack(side = "top", fill = "x", expand = "no")
@@ -44,13 +44,13 @@ mapquest_image_label.pack(side = "top", fill = "x", expand = "no")
 
 
 #title
-intro = Label(
-            canvas,
-            text = "WELCOME TO MAPQUEST",
-            bg ="#bb6c5d",
-            fg ="white",
-            font ='Raleway 40 bold')
-intro.pack(ipady = 25)
+# intro = Label(
+#             canvas,
+#             text = "WELCOME TO MAPQUEST",
+#             bg ="#bb6c5d",
+#             fg ="white",
+#             font ='Raleway 40 bold')
+# intro.pack(ipady = 25)
 
 
 #canvas resolution/size
