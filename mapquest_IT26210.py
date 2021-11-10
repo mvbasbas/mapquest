@@ -1,5 +1,6 @@
-import tkinter
+import tkinter 
 from tkinter import *
+from PIL import ImageTk, Image
 import urllib.parse
 import requests
 import webbrowser
@@ -11,37 +12,62 @@ finmap2 = "80202&maptype=map"
 key = "b4eOrBzps7qO2qrKvbeN32RK8f0qtAns"
 
 #added GUI
-window = Tk()
 
-window.title("Devnet Project")
+canvas = Tk()
 
-#added background color
-window.config(background = "#bb6c5d")
+canvas.title("Devnet Project")
+
+#added background color #bb6c5d
+canvas.config(background = "white")
+
+
+#inserting image
+path = "pic.png"
+
+mapquest_image = Image.open(path)
+mapquest_resizemage = mapquest_image.resize((1100,260))
+mapquest_finimage = ImageTk.PhotoImage(mapquest_resizemage)
+mapquest_image_label = tkinter.Label(canvas, image = mapquest_finimage,)
+mapquest_image_label.pack(side = "top", fill = "x", expand = "no")
+# mapquest_image = ImageTk.PhotoImage(Image.open(path))
+# mapquest_image_label = tkinter.Label(canvas, image = mapquest_image, height = 200, width = 100)
+# mapquest_image_label.pack(side = "top", fill = "none", expand = "no")
+
+
+
+
+# img = ImageTk.PhotoImage(mapquest_resizemage)
+# label1 = tkinter.Label(canvas, image=img)
+# label1.image = img
+# label1.pack()
+
+
 
 #title
 intro = Label(
-            window,
+            canvas,
             text = "WELCOME TO MAPQUEST",
             bg ="#bb6c5d",
             fg ="white",
-            font ='Arial 40 bold')
+            font ='Raleway 40 bold')
 intro.pack(ipady = 25)
 
-#window resolution/size
-window.geometry('1950x1100')
+
+#canvas resolution/size
+canvas.geometry('1950x1100')
 
 middleframe1 = Frame(
-                    window,
+                    canvas,
                     bg = "#bb6c5d")
 middleframe1.pack()
 
 middleframe2 = Frame(
-                    window,
+                    canvas,
                     bg = "#bb6c5d")
 middleframe2.pack()
 
 middleframe3 = Frame(
-                    window,
+                    canvas,
                     bg = "#bb6c5d")
 middleframe3.pack()
 
@@ -50,15 +76,16 @@ inputLabelLoc= Label(middleframe1,
                   text = 'Starting Location: ',
                   bg = '#bb6c5d',
                   fg = 'white',
-                  font = 'Arial 15 bold')
+                  font = 'Raleway 15 bold')
 inputLabelLoc.pack(side = LEFT)
 
 textLoc = StringVar()
 inputTextLoc = Entry(middleframe1,
                   textvariable = textLoc,
                   bd = 2,
+                  
                   width = 30,
-                  font = 'Arial 12')
+                  font = 'Raleway 12')
 inputTextLoc.pack(side = LEFT, ipady=5)
 
 #input textbox for destination location 
@@ -66,7 +93,7 @@ inputLabelDest= Label(middleframe2,
                   text = 'Destination: ',
                   bg = '#bb6c5d',
                   fg = 'white',
-                  font = 'Arial 15 bold')
+                  font = 'Raleway 15 bold')
 inputLabelDest.pack(side = LEFT, ipadx=7, pady=8)
 
 textDest = StringVar()
@@ -74,7 +101,7 @@ inputTextDest = Entry(middleframe2,
                   textvariable = textDest,
                   bd = 2,
                   width = 35,
-                  font = 'Arial 12')
+                  font = 'Raleway 12')
 inputTextDest.pack(side = LEFT, ipady=5, pady=8)
 
 def clearData():
@@ -102,11 +129,11 @@ def outputData():
     url = main_api + urllib.parse.urlencode({"key": key, "from":orig, "to":dest})
     
     global outputURL
-    outputURL = Label(window,
+    outputURL = Label(canvas,
                 text= "\n URL: " + url,
                 bg = '#bb6c5d',
                 fg = 'white',
-                font = 'Arial 12')
+                font = 'Raleway 12')
     outputURL.pack(pady = 5)  
     
     global json_status
@@ -114,7 +141,7 @@ def outputData():
     json_status = json_data["info"]["statuscode"]
 
     global line1
-    line1 = Canvas(window, width=1700, height=3)
+    line1 = Canvas(canvas, width=1700, height=3)
     line1.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
     line1.pack()
 
@@ -127,46 +154,46 @@ def outputData():
         printdistance = str(listDist).replace("{","").replace("}", "").replace("'", "").replace("[", "").replace("]", "").replace(",", "\n")
 
         global outputDistanceRoute
-        outputDistanceRoute = Label(window,
+        outputDistanceRoute = Label(canvas,
                     text = "Route Directions",
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 14 bold')
+                    font = 'Raleway 14 bold')
         outputDistanceRoute.pack(pady = 5) 
 
         global outputDistance
-        outputDistance = Label(window,
+        outputDistance = Label(canvas,
                     text = printdistance,
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 12 italic')
+                    font = 'Raleway 12 italic')
         outputDistance.pack(pady = 5) 
 
 
         global line2
-        line2 = Canvas(window, width=1700, height=3)
+        line2 = Canvas(canvas, width=1700, height=3)
         line2.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
         line2.pack()
 
         global outputStatus
-        outputStatus = Label(window,
+        outputStatus = Label(canvas,
                     text = "API Status: " + str(json_status) + " = A successful route call.",
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 12')
+                    font = 'Raleway 12')
         outputStatus.pack(pady = 5) 
 
         global line3
-        line3 = Canvas(window, width=1700, height=3)
+        line3 = Canvas(canvas, width=1700, height=3)
         line3.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
         line3.pack()
 
         global outputTrip
-        outputTrip = Label(window,
+        outputTrip = Label(canvas,
                     text = "Directions from " + (orig) + " to " + (dest),
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 12')
+                    font = 'Raleway 12')
         outputTrip.pack(pady = 5) 
 
         Duration = "Trip Duration: " + (json_data["route"]["formattedTime"])
@@ -174,22 +201,22 @@ def outputData():
         Fuel = "Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))
 
         global outputDuration
-        outputDuration = Label(window,
+        outputDuration = Label(canvas,
                     text = Duration + "\n" + Kilometers + "\n" +Fuel,
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 12')
+                    font = 'Raleway 12')
         outputDuration.pack(pady = 5) 
 
         Tunnel = 'Tunnel: ' + str(json_data["route"]["hasTunnel"])
         Highway = 'Highway: ' + str(json_data["route"]["hasHighway"])
 
         global outputRoute
-        outputRoute = Label(window,
+        outputRoute = Label(canvas,
                     text = Tunnel + "\n" + Highway,
                     bg = '#bb6c5d',
                     fg = 'white',
-                    font = 'Arial 12')
+                    font = 'Raleway 12')
         outputRoute.pack(pady = 5) 
     
     elif json_status == 402:
@@ -211,7 +238,7 @@ submitBtn = Button(middleframe3,
             width = 20,
             activebackground = '#741519',
             activeforeground = 'white',
-            font = 'Arial',
+            font = 'Raleway',
             command = outputData)
 submitBtn.pack(side = LEFT, padx = 5)
 
@@ -222,7 +249,7 @@ clearBtn = Button(
                   width = 20,
                   activebackground = '#741519',
                   activeforeground = 'white',
-                  font = 'Arial',
+                  font = 'Raleway',
                   command=clearData)
 clearBtn.pack(side = LEFT, padx = 5)
 
@@ -233,8 +260,9 @@ openMapBtn = Button(
                   width = 20,
                   activebackground = '#741519',
                   activeforeground = 'white',
-                  font = 'Arial',
+                  font = 'Raleway',
                   command=openMap)
 openMapBtn.pack(padx = 5)
 
-window.mainloop()
+
+canvas.mainloop()
