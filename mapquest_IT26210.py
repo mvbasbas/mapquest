@@ -196,7 +196,7 @@ def outputData():
 
         global line3
         line3 = Canvas(second_frame, width=1700, height=3)
-        line3.create_rectangle(0, 0, 1700, 3, fill="white", outline = 'white')
+        line3.create_rectangle(0, 0, 1700, 3, fill="#d25525", outline = '#d25525')
         line3.pack()
 
         global outputTrip
